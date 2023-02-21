@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/main.js",
     "build": "npx tsc",
-    "test:dnd": "jest src/dnd"
+    "test:dnd": "jest src/dnd",
+    "test:cat": "jest src/cat"
   },
   "author": "",
   "license": "ISC",
