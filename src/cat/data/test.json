@@ -1,0 +1,12 @@
+[
+  { "name": "Ana", "favorites": ["Potato Chips", "Cookies"] },
+  { "name": "Sofia", "favorites": ["Donuts", "Ice Cream"] },
+  { "name": "Carlos", "favorites": ["Chicken Tenders", "Pizza"] },
+  { "name": "Maria", "favorites": ["Hot Dogs", "Hamburger"] },
+  { "name": "Juan", "favorites": ["Hot Dogs", "Pasta"] },
+  { "name": "Guadalupe", "favorites": ["Hot Dogs", "Pasta"] },
+  { "name": "Antonio", "favorites": ["Potato Chips", "Hamburger"] },
+  { "name": "Alejandra", "favorites": ["Hot Dogs", "Pasta"] },
+  { "name": "Fernando", "favorites": ["Potato Chips", "Hamburger"] },
+  { "name": "Laura", "favorites": ["Hot Dogs", "Pasta"] }
+]
