@@ -10,7 +10,7 @@ interface DogsRepository {
     create(dog: Dog): void;
 }
 
-const SELECT_BY_ID = `select name, favorites from dogs where dogs.id = $1 order by dogs.id desc limit 1;`;
+const SELECT_BY_ID = `select name, hobbies from dogs where dogs.id = $1 order by dogs.id desc limit 1;`;
 const INSERT_DOG = `insert into dogs (name) values ($1);`;
 
 export class DogsPostgresRepository implements DogsRepository {
