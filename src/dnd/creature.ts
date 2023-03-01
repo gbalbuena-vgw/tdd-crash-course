@@ -11,6 +11,6 @@ export class Creature {
     /**
      * hit points (or HP) measure a character's physical health and vitality. An unscathed character is at their maximum hit points. During battle, characters lose hit points. When reduced to 0 hit points, characters are incapacitated or killed. Characters can regain hit points with healing potions, magic spells, or by rolling hit dice when resting.
      */
-    public hitPoints: number = 10,
+    public hitPoints: number = 10
   ) {}
 }

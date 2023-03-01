@@ -1,5 +1,5 @@
-import { DamageRoll } from "./damage-roll";
 import { Creature } from "./creature";
+import { DamageRoll } from "./damage-roll";
 
 export class Combat {
   constructor(

@@ -8,7 +8,7 @@ const names = [
   "Antonio",
   "Alejandra",
   "Fernando",
-  "Laura"
+  "Laura",
 ];
 
 const foods = [
@@ -20,5 +20,5 @@ const foods = [
   "Pizza",
   "Hot Dogs",
   "Hamburger",
-  "Pasta"
-]
+  "Pasta",
+];

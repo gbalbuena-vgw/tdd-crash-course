@@ -16,6 +16,7 @@ Output
 The function should return a list of names of cats (a list of strings) that like the given food.
 
 ## Constraints
+
 The length of cat_food_list will be between 1 and 1000.
 The length of each cat's favorite food list will be between 1 and 1000.
 Each cat's name will be unique and contain only lowercase letters.

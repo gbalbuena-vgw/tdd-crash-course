@@ -1,4 +1,4 @@
-import { Creature, Combat } from ".";
+import { Combat, Creature } from ".";
 
 const attacker = new Creature("Orc", 13, 10);
 const defender = new Creature("Adventurer", 15, 10);

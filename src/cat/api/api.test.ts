@@ -1,6 +1,6 @@
+import supertest from "supertest";
 import { PocCatService } from "../cat-service";
 import { createServer } from "./api";
-import supertest from "supertest";
 
 describe("api", () => {
   const catService = new PocCatService();
