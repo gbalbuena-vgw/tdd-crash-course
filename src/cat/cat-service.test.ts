@@ -19,7 +19,7 @@ describe('poc', () => {
   });
 });
 
-describe('poc', () => {
+describe('my service', () => {
   const service = new MyCatService(testData);
 
   test("Juan likes Hot dogs and pasta", () => {
@@ -28,5 +28,4 @@ describe('poc', () => {
       name: "Juan",
     });
   });
-  
 });

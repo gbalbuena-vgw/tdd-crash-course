@@ -1,4 +1,4 @@
-import { Pool, PoolConfig } from "pg";
+import { DatabaseError, Pool, PoolConfig } from "pg";
 import { DogsPostgresRepository } from "./dog-repository";
 
 // setup for to mock pg
@@ -35,10 +35,27 @@ describe("transaction postgres repository", () => {
   test("Given write, When transaction event, Then prepare expected insert", async () => {
     mPool.query.mockResolvedValue({ rows: [] });
 
-    await repo.createOrUpdate({ name: "Juan" });
+    await repo.create({ name: "Juan" });
     expect(mPool.query).toHaveBeenCalledWith({
       text: `insert into dogs (name) values ($1);`,
       values: ["Juan"],
+    });
+  });
+
+  test("Given a duplicated dog name, When transaction event, Then expect already created exception", async () => {
+    mPool.query.mockResolvedValue({ rows: [{ name: "Juan" }] });
+
+    expect(repo.create({ name: "Juan" })).rejects.toMatchObject({
+      message: "DogAlreadyExistError: Juan already exist, try another name",
+    });
+  });
+
+  test("just throw an error", async () => {
+    mPool.query.mockRejectedValueOnce(
+      new Error("Something went wrong") as DatabaseError
+    );
+    expect(repo.last("Sofia")).rejects.toMatchObject({
+      message: "Something went wrong",
     });
   });
 });

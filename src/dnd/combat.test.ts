@@ -1,4 +1,4 @@
-import { Creature, Combat } from "./";
+import { Creature, Combat } from ".";
 
 const attacker = new Creature("Orc", 13, 10);
 const defender = new Creature("Adventurer", 15, 10);
@@ -16,23 +16,23 @@ test("Given Orc attacks Adventurer, Then should produce some damage", () => {
 });
 
 test("reset method should reset hit points of creatures", () => {
-  combat.attacker.hitPoints = 5;
-  combat.defender.hitPoints = 3;
+  combat.getAttacker().hitPoints = 5;
+  combat.getDefender().hitPoints = 3;
   combat.reset();
-  expect(combat.attacker.hitPoints).toEqual(10);
-  expect(combat.defender.hitPoints).toEqual(10);
+  expect(combat.getAttacker().hitPoints).toEqual(10);
+  expect(combat.getDefender().hitPoints).toEqual(10);
 });
 
 test("getWinner method should return correct winner", () => {
-  combat.attacker.hitPoints = 3;
-  combat.defender.hitPoints = 0;
-  expect(combat.getWinner()).toEqual(combat.attacker);
+  combat.getAttacker().hitPoints = 3;
+  combat.getDefender().hitPoints = 0;
+  expect(combat.getWinner()).toEqual(combat.getAttacker());
 
-  combat.attacker.hitPoints = 0;
-  combat.defender.hitPoints = 2;
-  expect(combat.getWinner()).toEqual(combat.defender);
+  combat.getAttacker().hitPoints = 0;
+  combat.getDefender().hitPoints = 2;
+  expect(combat.getWinner()).toEqual(combat.getAttacker());
 
-  combat.attacker.hitPoints = 0;
-  combat.defender.hitPoints = 0;
+  combat.getAttacker().hitPoints = 0;
+  combat.getDefender().hitPoints = 0;
   expect(combat.getWinner()).toBeNull();
 });

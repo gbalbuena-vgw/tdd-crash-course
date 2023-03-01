@@ -1,7 +1,5 @@
 import { Pool } from 'pg';
-
-const SELECT_BY_ID = `select name, favorites from dogs where dogs.id = $1 order by dogs.id desc limit 1`;
-const INSERT_DOG = `insert into dogs (name) values ($1);`;
+import { DogAlreadyExistError } from './errors';
 
 type Dog = {
     name: string;
@@ -9,8 +7,11 @@ type Dog = {
 
 interface DogsRepository {
     last(name: string): Promise<Dog | undefined> ;
-    createOrUpdate(dog: Dog): void;
+    create(dog: Dog): void;
 }
+
+const SELECT_BY_ID = `select name, favorites from dogs where dogs.id = $1 order by dogs.id desc limit 1;`;
+const INSERT_DOG = `insert into dogs (name) values ($1);`;
 
 export class DogsPostgresRepository implements DogsRepository {
   constructor(private readonly pgPool: Pool) {
@@ -25,8 +26,12 @@ export class DogsPostgresRepository implements DogsRepository {
     return result.rows.length > 0 ? (result.rows[0] as Dog) : undefined;
   }
 
-  async createOrUpdate(dog: Dog) {
+  async create(dog: Dog) {
     const last = await this.last(dog.name);
+
+    if (last) {
+      throw new DogAlreadyExistError(dog.name);
+    }
     
     await this.pgPool.query({
       text: INSERT_DOG,
