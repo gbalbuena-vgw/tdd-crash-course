@@ -30,7 +30,7 @@ test("getWinner method should return correct winner", () => {
 
   combat.getAttacker().hitPoints = 0;
   combat.getDefender().hitPoints = 2;
-  expect(combat.getWinner()).toEqual(combat.getAttacker());
+  expect(combat.getWinner()).toEqual(combat.getDefender());
 
   combat.getAttacker().hitPoints = 0;
   combat.getDefender().hitPoints = 0;

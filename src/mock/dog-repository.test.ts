@@ -27,25 +27,40 @@ describe("transaction postgres repository", () => {
 
     await repo.last("Sofia");
     expect(mPool.query).toHaveBeenCalledWith({
-      text: `select name, favorites from dogs where dogs.id = $1 order by dogs.id desc limit 1`,
+      text: `select name, hobbies from dogs where dogs.id = $1 order by dogs.id desc limit 1;`,
       values: ["Sofia"],
     });
   });
 
-  test("Given write, When transaction event, Then prepare expected insert", async () => {
+  test("Given new dog, When create, Then prepare expected insert", async () => {
     mPool.query.mockResolvedValue({ rows: [] });
 
-    await repo.create({ name: "Juan" });
-    expect(mPool.query).toHaveBeenCalledWith({
-      text: `insert into dogs (name) values ($1);`,
-      values: ["Juan"],
+    await repo.create({
+      name: "Juan",
+      hobbies: ["Walks", "Eating", "Fishing"],
     });
+    expect(mPool.query.mock.calls).toEqual([
+      [
+        {
+          text: "select name, hobbies from dogs where dogs.id = $1 order by dogs.id desc limit 1;",
+          values: ["Juan"],
+        },
+      ],
+      [
+        {
+          text: "insert into dogs (name, hobbies) values ($1, $2);",
+          values: ["Juan", ["Walks", "Eating", "Fishing"]],
+        },
+      ],
+    ]);
   });
 
-  test("Given a duplicated dog name, When transaction event, Then expect already created exception", async () => {
+  test("Given a dog name, When duplicated, Then throw DogAlreadyExistError", async () => {
     mPool.query.mockResolvedValue({ rows: [{ name: "Juan" }] });
 
-    expect(repo.create({ name: "Juan" })).rejects.toMatchObject({
+    expect(
+      repo.create({ name: "Juan", hobbies: ["Walks", "Eating", "Fishing"] })
+    ).rejects.toMatchObject({
       message: "DogAlreadyExistError: Juan already exist, try another name",
     });
   });

@@ -3,6 +3,7 @@ import { DogAlreadyExistError } from "./errors";
 
 type Dog = {
   name: string;
+  hobbies: string[];
 };
 
 interface DogsRepository {
@@ -11,7 +12,7 @@ interface DogsRepository {
 }
 
 const SELECT_BY_ID = `select name, hobbies from dogs where dogs.id = $1 order by dogs.id desc limit 1;`;
-const INSERT_DOG = `insert into dogs (name) values ($1);`;
+const INSERT_DOG = `insert into dogs (name, hobbies) values ($1, $2);`;
 
 export class DogsPostgresRepository implements DogsRepository {
   constructor(private readonly pgPool: Pool) {
@@ -35,7 +36,7 @@ export class DogsPostgresRepository implements DogsRepository {
 
     await this.pgPool.query({
       text: INSERT_DOG,
-      values: [dog.name],
+      values: [dog.name, dog.hobbies],
     });
   }
 

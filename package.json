@@ -7,10 +7,12 @@
     "start": "node dist/main.js",
     "build": "npx tsc",
     "dev": "npx nodemon src/main.ts",
+    "test": "jest src",
+    "test:time": "jest src/mock/time --watchAll",
     "test:cat": "jest src/cat --watchAll",
     "test:dnd": "jest src/dnd",
     "test:mock": "jest src/mock --watchAll",
-    "test:sum": "jest src/sum --watchAll",
+    "test:matchers": "jest src/matchers --watchAll",
     "prettier:fix": "prettier --write ./src",
     "prettier:check": "prettier --check"
   },
