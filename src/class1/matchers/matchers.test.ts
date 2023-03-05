@@ -5,8 +5,11 @@ test("two plus two is four", () => {
 });
 
 test('object assignment', () => {
+  // arrange
   let data = { one: 1, two: 0 };
+  // act
   data.two = 2;
+  // assert
   expect(data).toEqual({ one: 1, two: 2 });
 });
 

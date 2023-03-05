@@ -6,7 +6,7 @@ describe("api", () => {
   const catService = new PocCatService();
   const app = createServer(catService);
 
-  test("aaa", async () => {
+  test("request get", async () => {
     await supertest(app)
       .get("/cats/federico")
       .expect(200)
