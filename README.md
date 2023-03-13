@@ -6,7 +6,7 @@
 ## Useful links
 
 * [Diagrams in excalidraw](docs/presentation-v1.excalidraw)
-* [Codewars: practicing your coding skills using tdd](codewars.com)
+* [Codewars: practicing your coding skills using tdd](https://codewars.com)
 
 ## Books
 
