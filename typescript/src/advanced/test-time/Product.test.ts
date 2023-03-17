@@ -1,4 +1,4 @@
-import { PRODUCTS, Product } from './time-is-of-the-essence';
+import { PRODUCTS, Product } from './Product';
 
 jest
   .useFakeTimers()
