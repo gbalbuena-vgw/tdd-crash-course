@@ -5,6 +5,10 @@ module.exports = {
   testPathIgnorePatterns: ['dist'],
   collectCoverage: true,
   collectCoverageFrom: ['./src/**'],
+  coveragePathIgnorePatterns: [
+    '!*.d.ts',
+    '!*.js'
+  ],
   coverageThreshold: {
     global: {
       lines: 80
