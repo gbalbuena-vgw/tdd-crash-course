@@ -1,3 +1,4 @@
+python/.pytest_cache/
 coverage
 dist
 node_modules
